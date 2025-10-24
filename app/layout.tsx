@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     'MÖRK BORG',
     'MEOW BORG',
     'cats',
+    'feline',
     'post-meowcalyptic',
     'tabletop',
     'roleplaying game',

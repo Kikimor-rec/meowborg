@@ -1,5 +1,19 @@
 import type { Metadata } from 'next'
+import { Inter, Permanent_Marker } from 'next/font/google'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+const permanentMarker = Permanent_Marker({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-heading',
+})
 
 export const metadata: Metadata = {
   title: 'MEOW BORG - Feline Post-Apocalyptic TTRPG',
@@ -14,8 +28,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="bg-meow-black text-meow-white antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${permanentMarker.variable} font-sans bg-meow-black text-meow-white antialiased`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

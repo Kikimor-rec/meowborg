@@ -13,6 +13,10 @@ const config: Config = {
         'meow-black': '#000000',
         'meow-white': '#FFFFFF',
       },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        heading: ['var(--font-heading)', 'cursive'],
+      },
     },
   },
   plugins: [],

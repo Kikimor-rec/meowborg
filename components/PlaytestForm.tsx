@@ -42,13 +42,30 @@ export default function PlaytestForm() {
     setErrors({ email: '', message: '' })
     setStatus('loading')
 
-    // TODO: Отправка на API (будет в итерации 4-5)
-    setTimeout(() => {
-      console.log('Form data:', { email, message })
+    try {
+      const response = await fetch('/api/playtest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, message }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setStatus('error')
+        console.error('Submission error:', data.error)
+        return
+      }
+
       setStatus('success')
       setEmail('')
       setMessage('')
-    }, 1000)
+    } catch (error) {
+      console.error('Network error:', error)
+      setStatus('error')
+    }
   }
 
   return (
@@ -130,6 +147,13 @@ export default function PlaytestForm() {
           {status === 'success' && (
             <div className="text-center text-meow-yellow text-lg">
               ✓ Thank you! We&apos;ll contact you soon.
+            </div>
+          )}
+
+          {/* Error Message */}
+          {status === 'error' && (
+            <div className="text-center text-meow-red text-lg">
+              ✗ Something went wrong. Please try again.
             </div>
           )}
         </form>

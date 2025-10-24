@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import PlaytestForm from '@/components/PlaytestForm'
+import ContactSection from '@/components/PlaytestForm'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     <main>
       <Hero />
       <About />
-      <PlaytestForm />
+      <ContactSection />
       <Footer />
     </main>
   )

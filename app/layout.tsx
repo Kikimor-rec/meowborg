@@ -16,9 +16,9 @@ const permanentMarker = Permanent_Marker({
 })
 
 export const metadata: Metadata = {
-  title: 'MEOW BORG - Feline Post-Meowcalyptic TTRPG',
+  title: 'MEOW BORG - Dream Post-Meowcalyptic TTRPG',
   description:
-    "A feline post-meowcalyptic tabletop roleplaying game. Explore the harsh and mysterious world of cats' dreams. Published under MÖRK BORG Third Party License.",
+    "A dream post-meowcalyptic tabletop roleplaying game. Explore the harsh and mysterious world of cats' dreams. Published under MÖRK BORG Third Party License.",
   keywords: [
     'TTRPG',
     'RPG',
@@ -34,17 +34,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Blazing Well' }],
   openGraph: {
-    title: 'MEOW BORG - Feline Post-Meowcalyptic TTRPG',
+    title: 'MEOW BORG - Dream Post-Meowcalyptic TTRPG',
     description:
-      'A feline post-meowcalyptic tabletop roleplaying game. Survive. Hunt. Purr.',
+      'A dream post-meowcalyptic tabletop roleplaying game. Survive. Hunt. Purr.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MEOW BORG - Feline Post-Meowcalyptic TTRPG',
+    title: 'MEOW BORG - Dream Post-Meowcalyptic TTRPG',
     description:
-      'A feline post-meowcalyptic tabletop roleplaying game. Survive. Hunt. Purr.',
+      'A dream post-meowcalyptic tabletop roleplaying game. Survive. Hunt. Purr.',
   },
 }
 

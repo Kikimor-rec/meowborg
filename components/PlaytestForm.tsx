@@ -1,77 +1,6 @@
-'use client'
-
-import { useState } from 'react'
 import Image from 'next/image'
 
-type InquiryType = 'playtest' | 'question' | 'join-team'
-
-export default function PlaytestForm() {
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const [inquiryType, setInquiryType] = useState<InquiryType>('playtest')
-  const [status, setStatus] = useState<
-    'idle' | 'loading' | 'success' | 'error'
-  >('idle')
-  const [errors, setErrors] = useState({ email: '', message: '' })
-
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    // Валидация
-    const newErrors = { email: '', message: '' }
-
-    if (!email) {
-      newErrors.email = 'Email is required'
-    } else if (!validateEmail(email)) {
-      newErrors.email = 'Please enter a valid email'
-    }
-
-    if (!message || message.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters'
-    } else if (message.length > 500) {
-      newErrors.message = 'Message must be less than 500 characters'
-    }
-
-    if (newErrors.email || newErrors.message) {
-      setErrors(newErrors)
-      return
-    }
-
-    setErrors({ email: '', message: '' })
-    setStatus('loading')
-
-    try {
-      const response = await fetch('/api/playtest', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, message, inquiryType }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        setStatus('error')
-        console.error('Submission error:', data.error)
-        return
-      }
-
-      setStatus('success')
-      setEmail('')
-      setMessage('')
-      setInquiryType('playtest')
-    } catch (error) {
-      console.error('Network error:', error)
-      setStatus('error')
-    }
-  }
-
+export default function ContactSection() {
   return (
     <section className="min-h-screen bg-meow-black py-12 sm:py-20 px-4 relative overflow-hidden">
       {/* Кот-маг как декоративный элемент */}
@@ -84,135 +13,63 @@ export default function PlaytestForm() {
         />
       </div>
 
-      <div className="max-w-2xl mx-auto relative z-10">
+      <div className="max-w-3xl mx-auto relative z-10">
         <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl text-meow-yellow mb-6 sm:mb-8 text-center">
-          Contact Us
+          Get in Touch
         </h2>
 
-        <p className="text-meow-white text-center mb-8 sm:mb-12 text-base sm:text-lg">
-          Join our playtest, ask a question, or become part of the team!
-        </p>
+        <div className="bg-meow-black/40 backdrop-blur-sm border-2 border-meow-yellow p-6 sm:p-8 md:p-12 space-y-6 text-meow-white">
+          <p className="text-lg sm:text-xl leading-relaxed text-center">
+            Want to join our playtest, ask a question, or become part of the
+            team?
+          </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Inquiry Type */}
-          <div>
-            <label className="block text-meow-white mb-3 font-medium">
-              I want to...
-            </label>
-            <div className="space-y-3">
-              <label className="flex items-center gap-3 cursor-pointer group">
-                <input
-                  type="radio"
-                  name="inquiryType"
-                  value="playtest"
-                  checked={inquiryType === 'playtest'}
-                  onChange={(e) => setInquiryType(e.target.value as InquiryType)}
-                  className="w-4 h-4 text-meow-yellow bg-meow-black border-2 border-meow-yellow focus:ring-meow-yellow focus:ring-2"
-                  disabled={status === 'loading'}
-                />
-                <span className="text-meow-white group-hover:text-meow-yellow transition-colors">
-                  Join the playtest
-                </span>
-              </label>
-              
-              <label className="flex items-center gap-3 cursor-pointer group">
-                <input
-                  type="radio"
-                  name="inquiryType"
-                  value="question"
-                  checked={inquiryType === 'question'}
-                  onChange={(e) => setInquiryType(e.target.value as InquiryType)}
-                  className="w-4 h-4 text-meow-yellow bg-meow-black border-2 border-meow-yellow focus:ring-meow-yellow focus:ring-2"
-                  disabled={status === 'loading'}
-                />
-                <span className="text-meow-white group-hover:text-meow-yellow transition-colors">
-                  Ask a question
-                </span>
-              </label>
-              
-              <label className="flex items-center gap-3 cursor-pointer group">
-                <input
-                  type="radio"
-                  name="inquiryType"
-                  value="join-team"
-                  checked={inquiryType === 'join-team'}
-                  onChange={(e) => setInquiryType(e.target.value as InquiryType)}
-                  className="w-4 h-4 text-meow-yellow bg-meow-black border-2 border-meow-yellow focus:ring-meow-yellow focus:ring-2"
-                  disabled={status === 'loading'}
-                />
-                <span className="text-meow-white group-hover:text-meow-yellow transition-colors">
-                  Become part of the team
-                </span>
-              </label>
+          <div className="space-y-6">
+            <div className="text-center">
+              <p className="text-meow-white/80 mb-4">Contact us via email:</p>
+              <a
+                href="mailto:meow@meowborg.com"
+                className="inline-block bg-meow-yellow text-meow-black font-heading text-xl sm:text-2xl px-8 py-4 hover:bg-meow-red hover:text-meow-white transition-colors"
+              >
+                meow@meowborg.com
+              </a>
             </div>
-          </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-meow-white mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-meow-black border-2 border-meow-yellow text-meow-white focus:outline-none focus:border-meow-red transition-colors"
-              placeholder="your@email.com"
-              disabled={status === 'loading'}
-            />
-            {errors.email && (
-              <p className="text-meow-red text-sm mt-1">{errors.email}</p>
-            )}
-          </div>
-
-          {/* Message */}
-          <div>
-            <label htmlFor="message" className="block text-meow-white mb-2">
-              Tell us about yourself
-            </label>
-            <textarea
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              rows={5}
-              className="w-full px-4 py-3 bg-meow-black border-2 border-meow-yellow text-meow-white focus:outline-none focus:border-meow-red transition-colors resize-none"
-              placeholder="Why do you want to join the playtest?"
-              disabled={status === 'loading'}
-            />
-            <div className="flex justify-between mt-1">
-              {errors.message && (
-                <p className="text-meow-red text-sm">{errors.message}</p>
-              )}
-              <p className="text-meow-white/60 text-sm ml-auto">
-                {message.length}/500
+            <div className="border-t border-meow-red/30 pt-6">
+              <p className="text-center text-meow-white/60 mb-4">
+                Or reach us on social media:
               </p>
+              <div className="flex justify-center gap-6 flex-wrap">
+                <a
+                  href="https://x.com/meowborg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-meow-white hover:text-meow-yellow transition-colors text-lg flex items-center gap-2"
+                >
+                  <span>🐦</span>
+                  <span>@meowborg</span>
+                </a>
+                <a
+                  href="https://t.me/meowborg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-meow-white hover:text-meow-yellow transition-colors text-lg flex items-center gap-2"
+                >
+                  <span>💬</span>
+                  <span>Telegram</span>
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className="w-full py-4 bg-meow-yellow text-meow-black font-heading text-xl hover:bg-meow-red hover:text-meow-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {status === 'loading' ? 'Sending...' : 'Submit'}
-          </button>
-
-          {/* Success Message */}
-          {status === 'success' && (
-            <div className="text-center text-meow-yellow text-lg">
-              ✓ Thank you! We&apos;ll contact you soon.
-            </div>
-          )}
-
-          {/* Error Message */}
-          {status === 'error' && (
-            <div className="text-center text-meow-red text-lg">
-              ✗ Something went wrong. Please try again.
-            </div>
-          )}
-        </form>
+          <div className="pt-6 border-t border-meow-red/30 text-center">
+            <p className="text-meow-white/80 text-base">
+              We&apos;d love to hear from you! Whether you want to test the
+              game, have questions about MEOW BORG, or are interested in joining
+              our team.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )

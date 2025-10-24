@@ -29,7 +29,7 @@ export default function Hero() {
               MEOW BORG
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-meow-white font-light drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] bg-meow-black/40 backdrop-blur-sm px-4 py-2 rounded inline-block mb-4">
-              A feline post-meowcalyptic tabletop roleplaying game
+              A dream post-meowcalyptic tabletop roleplaying game
             </p>
             <div className="text-sm md:text-base text-meow-red tracking-widest uppercase drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] bg-meow-black/40 backdrop-blur-sm px-4 py-2 rounded inline-block">
               Survive. Hunt. Purr.

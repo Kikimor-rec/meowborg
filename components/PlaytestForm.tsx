@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function PlaytestForm() {
   const [email, setEmail] = useState('')
@@ -51,8 +52,18 @@ export default function PlaytestForm() {
   }
 
   return (
-    <section className="min-h-screen bg-meow-black py-20 px-4">
-      <div className="max-w-2xl mx-auto">
+    <section className="min-h-screen bg-meow-black py-20 px-4 relative overflow-hidden">
+      {/* Кот-маг как декоративный элемент */}
+      <div className="absolute right-0 bottom-0 w-[400px] h-[500px] md:w-[600px] md:h-[700px] opacity-30 pointer-events-none">
+        <Image
+          src="/images/cat-mage.png"
+          alt=""
+          fill
+          className="object-contain object-bottom drop-shadow-[0_0_30px_rgba(255,0,255,0.5)]"
+        />
+      </div>
+
+      <div className="max-w-2xl mx-auto relative z-10">
         <h2 className="font-heading text-4xl md:text-6xl text-meow-yellow mb-8 text-center">
           Join the Playtest
         </h2>

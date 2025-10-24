@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center bg-meow-black relative overflow-hidden">
@@ -8,15 +10,31 @@ export default function Hero() {
       </div>
 
       {/* Основной контент */}
-      <div className="relative z-10 text-center px-4">
-        <h1 className="font-heading text-7xl md:text-9xl text-meow-yellow mb-6 drop-shadow-[0_0_30px_rgba(255,221,0,0.5)]">
-          MEOW BORG
-        </h1>
-        <p className="text-xl md:text-2xl text-meow-white max-w-2xl mx-auto font-light">
-          A feline post-apocalyptic tabletop roleplaying game
-        </p>
-        <div className="mt-4 text-meow-red text-sm md:text-base tracking-widest uppercase">
-          Survive. Hunt. Purr.
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="relative flex items-center justify-center lg:justify-start min-h-[600px]">
+          {/* Изображение кота-воина */}
+          <div className="absolute left-0 bottom-0 hidden lg:block w-[450px] h-[600px]">
+            <Image
+              src="/images/cat-warrior.png"
+              alt=""
+              fill
+              className="object-contain object-bottom mix-blend-lighten opacity-70"
+              priority
+            />
+          </div>
+
+          {/* Текст поверх кота, смещен к центру */}
+          <div className="relative z-20 text-center lg:text-left lg:ml-[280px]">
+            <h1 className="font-heading text-7xl md:text-9xl text-meow-yellow mb-6 drop-shadow-[0_0_30px_rgba(255,221,0,0.5)] [text-shadow:3px_3px_0_rgb(0_0_0/100%)]">
+              MEOW BORG
+            </h1>
+            <p className="text-xl md:text-2xl text-meow-white font-light drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] bg-meow-black/40 backdrop-blur-sm px-4 py-2 rounded inline-block">
+              A feline post-meowcalyptic tabletop roleplaying game
+            </p>
+            <div className="mt-4 text-meow-red text-sm md:text-base tracking-widest uppercase drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] bg-meow-black/40 backdrop-blur-sm px-4 py-2 rounded inline-block">
+              Survive. Hunt. Purr.
+            </div>
+          </div>
         </div>
       </div>
     </section>

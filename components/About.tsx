@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function About() {
   return (
     <section className="min-h-screen bg-meow-black py-20 px-4">

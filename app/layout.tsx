@@ -16,10 +16,10 @@ const permanentMarker = Permanent_Marker({
 })
 
 export const metadata: Metadata = {
-  title: 'MEOW BORG - Feline Post-Apocalyptic TTRPG',
+  title: 'MEOW BORG - Feline Post-Meowcalyptic TTRPG',
   description:
-    'A tabletop roleplaying game where cats survive in a post-apocalyptic world',
-  keywords: ['TTRPG', 'RPG', 'MÖRK BORG', 'cats', 'post-apocalyptic', 'tabletop'],
+    'A tabletop roleplaying game where cats survive in a post-meowcalyptic world',
+  keywords: ['TTRPG', 'RPG', 'MÖRK BORG', 'cats', 'post-meowcalyptic', 'tabletop'],
 }
 
 export default function RootLayout({

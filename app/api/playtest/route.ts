@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { sendPlaytestEmail } from '@/lib/email'
 
 // Интерфейс для данных формы
 interface PlaytestSubmission {
@@ -40,11 +41,19 @@ export async function POST(request: Request) {
       )
     }
 
-    // TODO: В следующей итерации добавим отправку email через Resend
-    // Пока просто логируем
-    console.log('Playtest submission received:', {
+    // Отправка email через Resend
+    const emailResult = await sendPlaytestEmail({ email, message })
+
+    if (!emailResult.success) {
+      console.error('Failed to send email:', emailResult.error)
+      return NextResponse.json(
+        { error: 'Failed to send email notification' },
+        { status: 500 }
+      )
+    }
+
+    console.log('Playtest submission processed successfully:', {
       email,
-      message,
       timestamp: new Date().toISOString(),
     })
 

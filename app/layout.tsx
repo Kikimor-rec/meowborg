@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Permanent_Marker } from 'next/font/google'
 import './globals.css'
 
@@ -18,7 +18,7 @@ const permanentMarker = Permanent_Marker({
 export const metadata: Metadata = {
   title: 'MEOW BORG - Feline Post-Meowcalyptic TTRPG',
   description:
-    'A feline post-meowcalyptic tabletop roleplaying game. Explore the harsh and mysterious world of cats\' dreams. Published under MÖRK BORG Third Party License.',
+    "A feline post-meowcalyptic tabletop roleplaying game. Explore the harsh and mysterious world of cats' dreams. Published under MÖRK BORG Third Party License.",
   keywords: [
     'TTRPG',
     'RPG',
@@ -45,11 +45,12 @@ export const metadata: Metadata = {
     description:
       'A feline post-meowcalyptic tabletop roleplaying game. Survive. Hunt. Purr.',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({

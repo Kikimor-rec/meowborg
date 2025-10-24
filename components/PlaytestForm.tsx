@@ -3,9 +3,12 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
+type InquiryType = 'playtest' | 'question' | 'join-team'
+
 export default function PlaytestForm() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [inquiryType, setInquiryType] = useState<InquiryType>('playtest')
   const [status, setStatus] = useState<
     'idle' | 'loading' | 'success' | 'error'
   >('idle')
@@ -48,7 +51,7 @@ export default function PlaytestForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, message }),
+        body: JSON.stringify({ email, message, inquiryType }),
       })
 
       const data = await response.json()
@@ -62,6 +65,7 @@ export default function PlaytestForm() {
       setStatus('success')
       setEmail('')
       setMessage('')
+      setInquiryType('playtest')
     } catch (error) {
       console.error('Network error:', error)
       setStatus('error')
@@ -82,15 +86,67 @@ export default function PlaytestForm() {
 
       <div className="max-w-2xl mx-auto relative z-10">
         <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl text-meow-yellow mb-6 sm:mb-8 text-center">
-          Join the Playtest
+          Contact Us
         </h2>
 
         <p className="text-meow-white text-center mb-8 sm:mb-12 text-base sm:text-lg">
-          Want to explore the feline dreamworld? Sign up for our playtest and
-          be among the first to experience MEOW BORG.
+          Join our playtest, ask a question, or become part of the team!
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Inquiry Type */}
+          <div>
+            <label className="block text-meow-white mb-3 font-medium">
+              I want to...
+            </label>
+            <div className="space-y-3">
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="inquiryType"
+                  value="playtest"
+                  checked={inquiryType === 'playtest'}
+                  onChange={(e) => setInquiryType(e.target.value as InquiryType)}
+                  className="w-4 h-4 text-meow-yellow bg-meow-black border-2 border-meow-yellow focus:ring-meow-yellow focus:ring-2"
+                  disabled={status === 'loading'}
+                />
+                <span className="text-meow-white group-hover:text-meow-yellow transition-colors">
+                  Join the playtest
+                </span>
+              </label>
+              
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="inquiryType"
+                  value="question"
+                  checked={inquiryType === 'question'}
+                  onChange={(e) => setInquiryType(e.target.value as InquiryType)}
+                  className="w-4 h-4 text-meow-yellow bg-meow-black border-2 border-meow-yellow focus:ring-meow-yellow focus:ring-2"
+                  disabled={status === 'loading'}
+                />
+                <span className="text-meow-white group-hover:text-meow-yellow transition-colors">
+                  Ask a question
+                </span>
+              </label>
+              
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="inquiryType"
+                  value="join-team"
+                  checked={inquiryType === 'join-team'}
+                  onChange={(e) => setInquiryType(e.target.value as InquiryType)}
+                  className="w-4 h-4 text-meow-yellow bg-meow-black border-2 border-meow-yellow focus:ring-meow-yellow focus:ring-2"
+                  disabled={status === 'loading'}
+                />
+                <span className="text-meow-white group-hover:text-meow-yellow transition-colors">
+                  Become part of the team
+                </span>
+              </label>
+            </div>
+          </div>
+
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-meow-white mb-2">

@@ -5,7 +5,7 @@
 ### Prerequisites
 - GitHub repository: https://github.com/Kikimor-rec/meowborg.git
 - Vercel account
-- Resend API key
+- SMTP email credentials (Gmail, Mail.ru, Yandex, или свой сервер)
 
 ### Steps
 
@@ -20,10 +20,17 @@
    Add the following environment variables in Vercel project settings:
    
    ```
-   RESEND_API_KEY=your_resend_api_key_here
-   PLAYTEST_EMAIL=meow@meowborg.com
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=587
+   SMTP_SECURE=false
+   SMTP_USER=your-email@gmail.com
+   SMTP_PASS=your-app-password
+   SMTP_FROM=MEOW BORG <your-email@gmail.com>
+   CONTACT_EMAIL=meow@meowborg.com
    NEXT_PUBLIC_SITE_URL=https://meowborg.com
    ```
+   
+   **Note:** For Gmail, generate an App Password instead of using your main password.
 
 3. **Build Settings**
    
@@ -53,11 +60,12 @@ Vercel automatically deploys:
 
 ### Email Configuration
 
-Before going live, configure Resend:
-1. Verify your domain in Resend dashboard
-2. Add DNS records (SPF, DKIM, DMARC)
-3. Update `lib/email.ts` sender email to your verified domain
-4. Test email functionality in production
+The form supports three types of inquiries:
+- **Playtest Request** - join the playtest
+- **Question** - ask about the game
+- **Join Team** - become part of the team
+
+All submissions are sent to `CONTACT_EMAIL` via your SMTP server.
 
 ### Post-Deployment Checklist
 

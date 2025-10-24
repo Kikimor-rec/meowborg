@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server'
-import { sendPlaytestEmail } from '@/lib/email'
+import { sendContactEmail, type InquiryType } from '@/lib/email'
 
 // Интерфейс для данных формы
-interface PlaytestSubmission {
+interface ContactSubmission {
   email: string
   message: string
+  inquiryType: InquiryType
 }
 
 // Валидация email
@@ -16,13 +17,13 @@ function isValidEmail(email: string): boolean {
 export async function POST(request: Request) {
   try {
     // Парсим body
-    const body: PlaytestSubmission = await request.json()
-    const { email, message } = body
+    const body: ContactSubmission = await request.json()
+    const { email, message, inquiryType } = body
 
     // Валидация
-    if (!email || !message) {
+    if (!email || !message || !inquiryType) {
       return NextResponse.json(
-        { error: 'Email and message are required' },
+        { error: 'Email, message and inquiry type are required' },
         { status: 400 }
       )
     }
@@ -41,8 +42,17 @@ export async function POST(request: Request) {
       )
     }
 
-    // Отправка email через Resend
-    const emailResult = await sendPlaytestEmail({ email, message })
+    // Валидация типа обращения
+    const validInquiryTypes = ['playtest', 'question', 'join-team']
+    if (!validInquiryTypes.includes(inquiryType)) {
+      return NextResponse.json(
+        { error: 'Invalid inquiry type' },
+        { status: 400 }
+      )
+    }
+
+    // Отправка email через SMTP
+    const emailResult = await sendContactEmail({ email, message, inquiryType })
 
     if (!emailResult.success) {
       console.error('Failed to send email:', emailResult.error)
@@ -52,8 +62,9 @@ export async function POST(request: Request) {
       )
     }
 
-    console.log('Playtest submission processed successfully:', {
+    console.log('Contact submission processed successfully:', {
       email,
+      inquiryType,
       timestamp: new Date().toISOString(),
     })
 

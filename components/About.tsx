@@ -2,15 +2,15 @@ import Image from 'next/image'
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-meow-black py-20 px-4">
+    <section className="min-h-screen bg-meow-black py-12 sm:py-20 px-4">
       <div className="max-w-4xl mx-auto">
         {/* О проекте */}
-        <div className="mb-16">
-          <h2 className="font-heading text-4xl md:text-6xl text-meow-yellow mb-8">
+        <div className="mb-12 sm:mb-16">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl text-meow-yellow mb-6 sm:mb-8">
             What is MEOW BORG?
           </h2>
-          <div className="space-y-6 text-meow-white text-lg leading-relaxed">
-            <p className="text-xl">
+          <div className="space-y-4 sm:space-y-6 text-meow-white text-base sm:text-lg leading-relaxed">
+            <p className="text-lg sm:text-xl">
               MEOW BORG is a tabletop roleplaying game.
             </p>
             <p>
@@ -26,11 +26,11 @@ export default function About() {
         </div>
 
         {/* О характере игры */}
-        <div className="mb-16">
-          <h3 className="font-heading text-3xl md:text-4xl text-meow-red mb-6">
+        <div className="mb-12 sm:mb-16">
+          <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl text-meow-red mb-4 sm:mb-6">
             A Word About the Game&apos;s Nature
           </h3>
-          <div className="space-y-4 text-meow-white text-lg leading-relaxed">
+          <div className="space-y-4 text-meow-white text-base sm:text-lg leading-relaxed">
             <p>
               Despite MEOW BORG being a game about cats&apos; adventures in
               their unusual, strange, and mysterious dreams—dreams that humans
@@ -47,7 +47,7 @@ export default function About() {
         </div>
 
         {/* Разделитель */}
-        <div className="border-t-2 border-meow-red my-12"></div>
+        <div className="border-t-2 border-meow-red my-8 sm:my-12"></div>
 
         {/* Legal Notice */}
         <div className="mb-12 text-sm text-meow-white/80">

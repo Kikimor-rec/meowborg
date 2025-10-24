@@ -25,3 +25,14 @@ h3 {
   font-weight: 400;
   letter-spacing: 0.02em;
 }
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #FFDD00;
+  outline-offset: 2px;
+}
+
+/* Улучшение читаемости текста */
+p {
+  text-wrap: pretty;
+}

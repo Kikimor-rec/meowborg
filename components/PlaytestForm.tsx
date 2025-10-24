@@ -69,9 +69,9 @@ export default function PlaytestForm() {
   }
 
   return (
-    <section className="min-h-screen bg-meow-black py-20 px-4 relative overflow-hidden">
+    <section className="min-h-screen bg-meow-black py-12 sm:py-20 px-4 relative overflow-hidden">
       {/* Кот-маг как декоративный элемент */}
-      <div className="absolute right-0 bottom-0 w-[400px] h-[500px] md:w-[600px] md:h-[700px] opacity-30 pointer-events-none">
+      <div className="absolute right-0 bottom-0 w-[300px] h-[400px] md:w-[600px] md:h-[700px] opacity-30 pointer-events-none">
         <Image
           src="/images/cat-mage.png"
           alt=""
@@ -81,11 +81,11 @@ export default function PlaytestForm() {
       </div>
 
       <div className="max-w-2xl mx-auto relative z-10">
-        <h2 className="font-heading text-4xl md:text-6xl text-meow-yellow mb-8 text-center">
+        <h2 className="font-heading text-3xl sm:text-4xl md:text-6xl text-meow-yellow mb-6 sm:mb-8 text-center">
           Join the Playtest
         </h2>
 
-        <p className="text-meow-white text-center mb-12">
+        <p className="text-meow-white text-center mb-8 sm:mb-12 text-base sm:text-lg">
           Want to explore the feline dreamworld? Sign up for our playtest and
           be among the first to experience MEOW BORG.
         </p>

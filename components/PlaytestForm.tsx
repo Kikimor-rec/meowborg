@@ -3,8 +3,8 @@ import Image from 'next/image'
 export default function ContactSection() {
   return (
     <section className="min-h-screen bg-meow-black py-12 sm:py-20 px-4 relative overflow-hidden">
-      {/* Кот-маг как декоративный элемент */}
-      <div className="absolute right-0 bottom-0 w-[300px] h-[400px] md:w-[600px] md:h-[700px] opacity-30 pointer-events-none">
+      {/* Кот-маг как декоративный элемент - уменьшен на мобильных */}
+      <div className="absolute right-0 bottom-0 w-[200px] h-[300px] sm:w-[300px] sm:h-[400px] md:w-[500px] md:h-[600px] lg:w-[600px] lg:h-[700px] opacity-20 sm:opacity-25 md:opacity-30 pointer-events-none">
         <Image
           src="/images/cat-mage.png"
           alt=""
@@ -26,36 +26,38 @@ export default function ContactSection() {
 
           <div className="space-y-6">
             <div className="text-center">
-              <p className="text-meow-white/80 mb-4">Contact us via email:</p>
+              <p className="text-meow-white/80 mb-4 text-sm sm:text-base">
+                Contact us via email:
+              </p>
               <a
                 href="mailto:meow@meowborg.com"
-                className="inline-block bg-meow-yellow text-meow-black font-heading text-xl sm:text-2xl px-8 py-4 hover:bg-meow-red hover:text-meow-white transition-colors"
+                className="inline-block bg-meow-yellow text-meow-black font-heading text-lg sm:text-xl md:text-2xl px-6 py-3 sm:px-8 sm:py-4 hover:bg-meow-red hover:text-meow-white transition-colors break-all sm:break-normal"
               >
                 meow@meowborg.com
               </a>
             </div>
 
             <div className="border-t border-meow-red/30 pt-6">
-              <p className="text-center text-meow-white/60 mb-4">
+              <p className="text-center text-meow-white/60 mb-4 text-sm sm:text-base">
                 Or reach us on social media:
               </p>
-              <div className="flex justify-center gap-6 flex-wrap">
+              <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
                 <a
                   href="https://x.com/meowborg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-meow-white hover:text-meow-yellow transition-colors text-lg flex items-center gap-2"
+                  className="text-meow-white hover:text-meow-yellow transition-colors text-base sm:text-lg flex items-center gap-2 min-h-[44px]"
                 >
-                  <span>🐦</span>
+                  <span className="text-xl">🐦</span>
                   <span>@meowborg</span>
                 </a>
                 <a
                   href="https://t.me/meowborg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-meow-white hover:text-meow-yellow transition-colors text-lg flex items-center gap-2"
+                  className="text-meow-white hover:text-meow-yellow transition-colors text-base sm:text-lg flex items-center gap-2 min-h-[44px]"
                 >
-                  <span>💬</span>
+                  <span className="text-xl">💬</span>
                   <span>Telegram</span>
                 </a>
               </div>
@@ -63,7 +65,7 @@ export default function ContactSection() {
           </div>
 
           <div className="pt-6 border-t border-meow-red/30 text-center">
-            <p className="text-meow-white/80 text-base">
+            <p className="text-meow-white/80 text-sm sm:text-base">
               We&apos;d love to hear from you! Whether you want to test the
               game, have questions about MEOW BORG, or are interested in joining
               our team.
